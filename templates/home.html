@@ -1,0 +1,9 @@
+{%extends 'base.html'%} {%block title%}home page{%endblock%}{%block content%}
+<section>
+  <h1>{{title}}</h1>
+  <p>{{instructions}}</p>
+  <form action="/questions/0" method="get">
+    <button type="submit" name="start">Start</button>
+  </form>
+</section>
+{%endblock%}

@@ -1,0 +1,31 @@
+{%extends 'base.html'%} {%block title%}question {{question_idx + 1}}{%endblock%}
+{%block content%} {%if satisfaction_survey.questions[question_idx].choices ==
+["Yes", "No"] %}
+<form action="/answer" method="POST">
+  <label for="q">{{question}}</label>
+  <br />
+  <input type="radio" id="yes" name="answer" value="yes" />
+  <label for="yes">Yes</label>
+  <input type="radio" id="no" name="answer" value="no" />
+  <label for="no">No</label>
+  <br />
+  <button type="submit">Next</button>
+</form>
+{%else%}
+<form action="/answer" method="POST">
+  <label for="q">{{question}}</label>
+  <br />
+  <input type="radio" id="choice1" name="answer" value="{{choice1}}" />
+  <label for="choice1">{{choice1}}</label>
+  <input type="radio" id="choice2" name="answer" value="{{choice2}}" />
+  <label for="choice2">{{choice2}}</label>
+  <br />
+  <button type="submit">Next</button>
+</form>
+{%endif%} {% with messages = get_flashed_messages() %} {% if messages %}
+<ul>
+  {% for message in messages %}
+  <li>{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %} {% endwith %} {%endblock%}
